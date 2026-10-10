@@ -1,0 +1,27 @@
+#define QSIZE 5
+char queue[QSIZE][30];
+int front = 0, rear = -1, qcount = 0;
+
+void enqueue(char topic[]) {
+    if (qcount == QSIZE) {
+        printf("Revision queue full\n");
+        return;
+    }
+    rear = (rear + 1) % QSIZE;
+    strcpy(queue[rear], topic);
+    qcount++;
+}
+
+void reviseNext() {
+    char topic[30];
+    if (qcount == 0) {
+        printf("No topics to revise\n");
+        return;
+    }
+    strcpy(topic, queue[front]);
+    front = (front + 1) % QSIZE;
+    qcount--;
+    printf("Revise now: %s\n", topic);
+    enqueue(topic);  
+}
+
