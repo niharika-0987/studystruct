@@ -1,0 +1,30 @@
+struct Task stack[MAX];
+int top = -1;
+
+void push(struct Task t) {
+    if (top == MAX - 1) {
+        printf("Stack full\n");
+        return;
+    }
+    stack[++top] = t;
+}
+
+void pop() {
+    if (top == -1) {
+        printf("No completed tasks\n");
+        return;
+    }
+    printf("Removed from completed: %s\n", stack[top].subject);
+    top--;
+}
+
+void showCompleted() {
+    int i;
+    if (top == -1) {
+        printf("No completed tasks\n");
+        return;
+    }
+    for (i = top; i >= 0; i--)
+        printf("%s\n", stack[i].subject);
+}
+
