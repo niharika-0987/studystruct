@@ -1,0 +1,52 @@
+struct Task tasks[MAX];
+int taskCount = 0;
+
+void addTask() {
+    struct Task t;
+    printf("Subject: ");
+    scanf("%s", t.subject);
+    printf("Deadline (days left): ");
+    scanf("%d", &t.deadline);
+    printf("Difficulty (1-5): ");
+    scanf("%d", &t.difficulty);
+    t.priority = t.difficulty * 2 + (10 - t.deadline);
+    tasks[taskCount] = t;
+    taskCount++;
+}
+
+void showTasks() {
+    int i;
+    if (taskCount == 0) {
+        printf("No tasks\n");
+        return;
+    }
+    for (i = 0; i < taskCount; i++)
+        printf("%d. %s | deadline: %d | difficulty: %d | priority: %d\n",
+               i + 1, tasks[i].subject, tasks[i].deadline,
+               tasks[i].difficulty, tasks[i].priority);
+}
+
+void editTask() {
+    int n;
+    showTasks();
+    printf("Task number to edit: ");
+    scanf("%d", &n);
+    if (n < 1 || n > taskCount) {
+        printf("Invalid\n");
+        return;
+    }
+    n--;
+    printf("New deadline: ");
+    scanf("%d", &tasks[n].deadline);
+    printf("New difficulty: ");
+    scanf("%d", &tasks[n].difficulty);
+    tasks[n].priority = tasks[n].difficulty * 2 + (10 - tasks[n].deadline);
+}
+
+void deleteTask(int n) {   /* n is 0-based */
+    int i;
+    for (i = n; i < taskCount - 1; i++)
+        tasks[i] = tasks[i + 1];
+    taskCount--;
+}
+
