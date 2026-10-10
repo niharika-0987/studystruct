@@ -1,0 +1,91 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class User
+{
+private:
+    string username;
+    string password;
+public:
+    User()
+    {
+        username = "student";
+        password = "1234";
+    }
+    string getUsername()
+    {
+        return username;
+    }
+    string getPassword()
+    {
+        return password;
+    }
+};
+
+class Login
+{
+public:
+    bool login(User u)
+    {
+        string username;
+        string password;
+        cout<<"SMART STUDY PLANNER\n"<<"ENTER USERNAME ";
+        cin>>username;
+        cout<<"Enter Password ";
+        cin>>password;
+        if (username == u.getUsername() &&
+            password == u.getPassword())
+        {
+            cout<<"log in succesfull yipieee ";
+            return true;
+        }
+        else
+        {
+            cout<<"wrong login details huh ? ";
+            return false;
+        }
+    }
+};
+class Task
+{
+public:
+    void addTask()
+    {
+        cout<<"Add Task\n";
+    }
+
+    void updateTask()
+    {
+        cout<<"Update Task\n";
+    }
+
+    void deleteTask()
+    {
+        cout<<"Delete Task\n";
+    }
+};
+
+class StudyPlannerEngine
+{
+public:
+    void startPlanner()
+    {
+        Task t;
+        t.addTask();
+        t.updateTask();
+        t.deleteTask();
+    }
+};
+
+int main()
+{
+    User u;
+    Login l;
+    if (l.login(u))
+    {
+        StudyPlannerEngine planner;
+        planner.startPlanner();
+    }
+
+    return 0;
+}
