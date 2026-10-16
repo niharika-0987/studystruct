@@ -1,0 +1,8 @@
+#define MAX 50
+
+struct Task {
+    char subject[30];
+    int deadline;    /* days left */
+    int difficulty;  /* 1 to 5 */
+    int priority;
+};
